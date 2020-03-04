@@ -13,3 +13,4 @@ Android_app/captures
 .externalNativeBuild
 .cxx
 
+/env/*
