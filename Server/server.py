@@ -16,6 +16,21 @@ def build_help_json(user, desc, loc):
     help_request['loc'] = loc
     return json.dumps(help_request)
 
+@app.route('/register')
+def register_new_user():
+    data = request.headers
+
+    username = data.get('user')
+    pword = data.get('password')
+
+    users[username] = pword
+    messages[username] = []
+
+    print(users)
+    print(messages)
+
+    return "registered successfully"
+
 
 @app.route('/help')
 def send_help_request():
@@ -47,7 +62,6 @@ def check_messages():
 
     print(messages[user])
     return str(messages[user])
-
 
 
 

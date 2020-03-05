@@ -14,3 +14,7 @@ Android_app/captures
 .cxx
 
 /env/*
+Server/env/*
+Server/env/Lib/site-packages/chardet/__pycache__/escprober.cpython-38.pyc
+/Server/env/*
+*.pyc
