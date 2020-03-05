@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 users = {"user1":"password1", "user2":"password2", "user3":"password1"}
-contacts = {"user1": [1], "user1": [0]}
+contacts = {"user1": ['user2'], "user2": ['user1'], "user3": ['user1'], "user4":["user1"]}
 messages = {"user1":[], "user2":[]}
 
 
