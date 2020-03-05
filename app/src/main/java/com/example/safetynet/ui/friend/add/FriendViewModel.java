@@ -10,10 +10,12 @@ public class FriendViewModel extends ViewModel {
 
     public FriendViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is add a friend fragment");
+        mText.setValue("Add a friend");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
+
+    public void setText(String newText) { mText.setValue(newText);}
 }
