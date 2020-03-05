@@ -18,3 +18,16 @@ Server/env/*
 Server/env/Lib/site-packages/chardet/__pycache__/escprober.cpython-38.pyc
 /Server/env/*
 *.pyc
+
+
+Server\.env
+Server\.venv
+Server\env/
+venv/
+Server\ENV/
+
+Server/.env
+Server/.venv
+Server/env/
+venv/
+Server/ENV/
