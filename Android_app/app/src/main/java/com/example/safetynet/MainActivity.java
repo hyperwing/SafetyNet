@@ -26,8 +26,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
 
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /* Code generated automatically by Android Studio (at least for the most part) */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -58,6 +62,28 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        /* Custom code */
+        Button helpButton = findViewById(R.id.emergency_request);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    URL url = new URL("http://localhost:5000/");
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("user", "user1");
+                    connection.setRequestProperty("desc", "heartattack");
+                    connection.setRequestProperty("loc", "Smith Labs");
+                    connection.setRequestProperty("contacts", "user2,user3");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error sending help");
+                }
+            }
+        });
+
 
     }
 
