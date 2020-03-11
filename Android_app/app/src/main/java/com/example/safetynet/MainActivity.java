@@ -1,5 +1,8 @@
 package com.example.safetynet;
 
+import android.content.Context;
+import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.android.volley.RequestQueue;
@@ -8,10 +11,12 @@ import com.example.safetynet.ui.friend.add.FriendViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.os.Process;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -27,6 +32,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -62,29 +70,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        /* Custom code */
-        Button helpButton = findViewById(R.id.emergency_request);
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    URL url = new URL("http://localhost:5000/");
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("user", "user1");
-                    connection.setRequestProperty("desc", "heartattack");
-                    connection.setRequestProperty("loc", "Smith Labs");
-                    connection.setRequestProperty("contacts", "user2,user3");
-
-
-                } catch (Exception e) {
-                    System.out.println("Error sending help");
-                }
-            }
-        });
-
-
     }
 
     @Override
@@ -99,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }
